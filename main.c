@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:33:29 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/07 18:05:56 by pconin           ###   ########.fr       */
+/*   Updated: 2016/04/07 19:22:17 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int		main(int argc, char **argv)
 {
-	t_env *stock;
+	t_env	*stock;
+	
+	stock = (t_env *)malloc(sizeof(t_env));
+	ft_putstr("hello");
 	ft_setwin(stock);
 	return (0);
 }

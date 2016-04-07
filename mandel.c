@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:48:28 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/07 18:11:45 by pconin           ###   ########.fr       */
+/*   Updated: 2016/04/07 19:58:53 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,27 @@
 
 void	func_mandel(double x, double y, t_env *stock)
 {
-	double c;
-	double z;
-	double i;
+	double c_r = x;
+	double c_i = y;
+	double z_r = 0;
+	double z_i = 0;
+	double i = 0;
+	double tmp;
 
-	z = 0;
-	i = 0;
-	while (z < 2 && i < 50)
+	while (z_r * z_r + z_i * z_i < 4 && i < 50)
 	{
-		ft_putstr("mandelwhile");
-		c = x + (i * y);
+	{
 		z = z * z + c;
 		i++;
 	}
 	if (i == 50)
+	{
 		put_pixel_in_image(x, y, stock);
+		ft_putstr("hello");
+	}
 	else
-		return ;
+		ft_putstr("yo");
+	return ;
 
 }
 

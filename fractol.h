@@ -6,14 +6,14 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 18:06:09 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/07 18:11:48 by pconin           ###   ########.fr       */
+/*   Updated: 2016/04/07 19:22:35 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 
-#define FRACTOL_H
-
+# define FRACTOL_H
+# define ESC 53
 # define ENTER 36
 # define S_WIDTH 1000
 # define S_HEIGHT 1000
@@ -24,7 +24,8 @@
 #include "./libft/libft.h"
 #include <string.h>
 #include <math.h>
-
+# include <fcntl.h>
+#include <unistd.h>
 
 typedef struct	s_env
 {
