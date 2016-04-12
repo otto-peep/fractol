@@ -12,30 +12,47 @@
 
 #include "fractol.h"
 
-int		key_h(int keycode, t_env *stock)
+int		key_h(int keycode, t_env *s)
 {
-	ft_putstr("hi");
+	s->img_ptr = mlx_new_image(s->mlx, S_WIDTH, S_HEIGHT);
+	s->img = mlx_get_data_addr(s->img_ptr, &(s->bpp), &(s->line),
+					&(s->endi));
 	if (keycode == ESC)
 		exit(0);
-	if (keycode == ENTER)
-		mandel(stock);
-	mlx_put_image_to_window(stock->mlx, stock->win, stock->img_ptr, 0, 0);
+	if (keycode == KEY_A)
+		s->fr->iter += 600;
+	if (keycode == KEY_P)
+		s->zoom += 50;
+	if (keycode == KEY_L)
+		s->zoom -= 50;
+	mandel(s);
+	mlx_put_image_to_window(s->mlx, s->win, s->img_ptr, 0, 0);
 	return (0);
 }
 
-void	ft_setwin(t_env *stock)
+int		mouse_h(int button, int x, int y, t_env *s)
 {
-	stock->bpp = 0;
-	stock->line = 0;
-	stock->line = 0;
+	
+}
+
+void	ft_setwin(t_env *s)
+{
+	
+	t_frac *mand;
+
+	mand = (t_frac*)malloc(sizeof(t_frac));
+	s->fr = mand;
+	s->bpp = 0;
+	s->line = 0;
+	s->line = 0;
+	s->zoom = 150;
 	ft_putstr("before init");
-	stock->mlx = mlx_init();
+	init_mandel(s->fr);
 	ft_putstr("after init");
-	stock->win = mlx_new_window(stock->mlx, S_WIDTH, S_HEIGHT, "Fractol 42");
-	ft_putstr("after window");
-	stock->img_ptr = mlx_new_image(stock->mlx, S_WIDTH, S_HEIGHT);
-	stock->img = mlx_get_data_addr(stock->img_ptr, &(stock->bpp), &(stock->line), &(stock->endi));
-	ft_putstr("yo");
-	mlx_key_hook(stock->win, &key_h, stock);
-	mlx_loop(stock->mlx);
+	s->mlx = mlx_init();
+	s->win = mlx_new_window(s->mlx, S_WIDTH, S_HEIGHT, "Fractol 42");
+	s->img_ptr = mlx_new_image(s->mlx, S_WIDTH, S_HEIGHT);
+	s->img = mlx_get_data_addr(s->img_ptr, &(s->bpp), &(s->line), &(s->endi));
+	mlx_key_hook(s->win, &key_h, s);
+	mlx_loop(s->mlx);
 }

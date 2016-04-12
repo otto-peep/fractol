@@ -21,7 +21,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C libft/
-	gcc -o $(NAME) $(SRC) -I $(HEAD) $(SCHPATH)
+	gcc -o $(NAME) $(SRC) -I $(HEAD) $(HOMEPATH)
 
 clean :
 	make -C libft/ clean

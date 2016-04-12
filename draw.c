@@ -12,17 +12,19 @@
 
 #include "fractol.h"
 
-void	put_pixel_in_image(int x, int y, t_env *stock)
+void	put_pixel_in_image(int x, int y, int i, t_env *s)
 {
 	int pl;
 	int octet;
 	int color;
 
-	color = 0x0033CC33;
-	octet = stock->bpp / 8;
-	pl = (x * (stock->bpp / 8)) + (y * stock->line);
+	color = ((i * 255/(int)s->fr->iter) << 16) + (0 << 8) + (0);
+	octet = s->bpp / 8;
+	pl = (x * (s->bpp / 8)) + (y * s->line);
 	if (x >= 0 && y >= 0 && x < S_WIDTH && y < S_HEIGHT)
-		ft_memcpy(&stock->img[pl], &color, octet);
+		ft_memcpy(&s->img[pl], &color, octet);
+	else if (x == S_WIDTH || y == S_HEIGHT)
+		ft_putstr("prob");
 	else
 		return ;
 }

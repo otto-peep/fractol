@@ -17,7 +17,6 @@ int		main(int argc, char **argv)
 	t_env	*stock;
 	
 	stock = (t_env *)malloc(sizeof(t_env));
-	ft_putstr("hello");
 	ft_setwin(stock);
 	return (0);
 }
