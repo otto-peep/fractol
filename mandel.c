@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:48:28 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/07 19:58:53 by pconin           ###   ########.fr       */
+/*   Updated: 2016/04/12 15:25:36 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,15 @@ void	init_mandel(t_frac *mand)
 	mand->y1 = -1.2;
 	mand->y2 = 1.2;
 	mand->iter = 50;
+}
+
+void	zoom_mandel(t_env *s, double x, double y)
+{
+	s->fr->x1 = (x/s->zoom) - s->fr->h;
+	s->fr->x2 = (x/s->zoom) + s->fr->h;
+	s->fr->y1 = (y/s->zoom) - s->fr->h;
+	s->fr->y2 = (y/s->zoom) + s->fr->h;
+	printf("x1 = %f \n x2 = %f \n y1 = %f \n y2 = %f \n", s->fr->x1,
+			s->fr->x2, s->fr->y1, s->fr->y2);
+	s->zoom += 10;
 }
