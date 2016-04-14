@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 18:06:09 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/12 13:56:54 by pconin           ###   ########.fr       */
+/*   Updated: 2016/04/14 15:35:38 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct	s_frac
 	double		y2;
 	double		iter;
 	double		h;
+	double		x_zoom;
+	double		y_zoom;
 }				t_frac;
 
 typedef struct	s_env

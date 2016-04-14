@@ -1,16 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandel.c                                           :+:      :+:    :+:   */
+/*   mandel2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/07 17:48:28 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/14 15:35:51 by pconin           ###   ########.fr       */
+/*   Created: 2016/04/14 15:05:28 by pconin            #+#    #+#             */
+/*   Updated: 2016/04/14 15:35:45 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "fractol.h"
 
 void	func_mandel(double x, double y, t_env *s)
 {
@@ -33,7 +31,6 @@ void	func_mandel(double x, double y, t_env *s)
 	else
 		put_pixel_in_image(x, y, i, s);
 	return ;
-
 }
 
 void	mandel(t_env *s)
@@ -42,35 +39,16 @@ void	mandel(t_env *s)
 	double y;
 	double image_x = (s->fr->x2 - s->fr->x1) * s->zoom;
 	double image_y = (s->fr->y2 - s->fr->y1) * s->zoom;
+
 	x = 0;
-	while (x < image_x && x < S_WIDTH)
+	while (x < S_WIDTH)
 	{
 		y = 0;
-		while (y < image_y && y < S_HEIGHT)
+		while (y < S_HEIGHT)
 		{
 			func_mandel(x, y, s);
 			y++;
 		}
 		x++;
 	}
-}
-
-void	init_mandel(t_frac *mand)
-{
-	mand->x1 = -2.1;
-	mand->x2 = 0.6;
-	mand->y1 = -1.2;
-	mand->y2 = 1.2;
-	mand->iter = 50;
-}
-
-void	zoom_mandel(t_env *s, double x, double y)
-{
-	s->fr->x1 = (x/s->zoom) - s->fr->h;
-	s->fr->x2 = (x/s->zoom) + s->fr->h;
-	s->fr->y1 = (y/s->zoom) - s->fr->h;
-	s->fr->y2 = (y/s->zoom) + s->fr->h;
-	printf("x1 = %f \n x2 = %f \n y1 = %f \n y2 = %f \n", s->fr->x1,
-			s->fr->x2, s->fr->y1, s->fr->y2);
-	s->zoom += 10;
 }
