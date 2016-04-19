@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandel2.c                                          :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/14 15:05:28 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/14 15:35:45 by pconin           ###   ########.fr       */
+/*   Created: 2016/04/19 13:47:53 by pconin            #+#    #+#             */
+/*   Updated: 2016/04/19 15:16:55 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	func_mandel(double x, double y, t_env *s)
-{
-	double c_r = x / s->zoom - 2.1;
-	double c_i = y / s->zoom - 1.2;
-	double z_r = 0;
-	double z_i = 0;
-	double i = 0;
-	double tmp;
+#include "fractol.h"
 
+void	func_julia(double x, double y, t_env *s)
+{
+	double	c_r = 0.285;
+	double	c_i = 0.01;
+	double	z_r = x / s->fr->zoom + s->fr->x1;
+	double	z_i = y / s->fr->zoom + s->fr->y1;
+	int i = 0;
+	double tmp;
+	
+	ft_putstr("julia");
 	while (z_r * z_r + z_i * z_i < 4 && i < s->fr->iter)
 	{
 		tmp = z_r;
@@ -31,24 +34,26 @@ void	func_mandel(double x, double y, t_env *s)
 	else
 		put_pixel_in_image(x, y, i, s);
 	return ;
+
 }
 
-void	mandel(t_env *s)
+void	julia(t_env *s)
 {
 	double x;
 	double y;
-	double image_x = (s->fr->x2 - s->fr->x1) * s->zoom;
-	double image_y = (s->fr->y2 - s->fr->y1) * s->zoom;
-
+	
+	s->fr->img_x = (s->fr->x2 - s->fr->x1) * s->fr->zoom;
+	s->fr->img_y = (s->fr->y2 - s->fr->y1) * s->fr->zoom;
 	x = 0;
-	while (x < S_WIDTH)
+	while (x < s->fr->img_x)
 	{
 		y = 0;
-		while (y < S_HEIGHT)
+		while (y < s->fr->img_y)
 		{
-			func_mandel(x, y, s);
+			func_julia(x, y, s);
 			y++;
 		}
 		x++;
 	}
 }
+

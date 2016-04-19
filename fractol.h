@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 18:06:09 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/14 15:35:38 by pconin           ###   ########.fr       */
+/*   Updated: 2016/04/19 15:20:31 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ typedef struct	s_frac
 	double		h;
 	double		x_zoom;
 	double		y_zoom;
+	double		img_x;
+	double		img_y;
+	int			zoom;
+	int			zx;
+	int			zy;
 }				t_frac;
 
 typedef struct	s_env
@@ -77,14 +82,15 @@ typedef struct	s_env
 	int			bpp;
 	int			endi;
 	int			line;
-	int			zoom;
 	t_frac		*fr;
 }				t_env;
 
+void	aff_fractal(t_env *s);
 void	ft_setwin(t_env *stock);
 int		key_h(int keycode, t_env *stock);
 void	mandel(t_env *stock);
 void	put_pixel_in_image(int x, int y, int i, t_env *stock);
-void	init_mandel(t_frac *mand);
-void	zoom_mandel(t_env *s, double x, double y);
+void	ft_zoom(t_env *s, double x, double y);
+void	julia(t_env *s);
+void	ft_init(t_env *s);
 #endif

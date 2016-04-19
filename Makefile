@@ -9,7 +9,9 @@ FLAGS = -Wall -Wextra -Werror
 SRC = main.c	\
 	  window.c	\
 	  draw.c	\
-	  mandel.c
+	  mandel.c	\
+	  functions.c	\
+	  julia.c
 
 HOMEPATH = -lm -L libft/ -lft -L./minilibx_macos -I./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 

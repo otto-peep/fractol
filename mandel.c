@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:48:28 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/14 15:35:51 by pconin           ###   ########.fr       */
+/*   Updated: 2016/04/19 15:20:29 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	func_mandel(double x, double y, t_env *s)
 {
-	double c_r = x / s->zoom - 2.1;
-	double c_i = y / s->zoom - 1.2;
+	double c_r = x / s->fr->zoom - 2.1;
+	double c_i = y / s->fr->zoom - 1.2;
 	double z_r = 0;
 	double z_i = 0;
 	double i = 0;
@@ -40,37 +40,18 @@ void	mandel(t_env *s)
 {
 	double x;
 	double y;
-	double image_x = (s->fr->x2 - s->fr->x1) * s->zoom;
-	double image_y = (s->fr->y2 - s->fr->y1) * s->zoom;
+	s->fr->img_x = (s->fr->x2 - s->fr->x1) * s->fr->zoom;
+	s->fr->img_y = (s->fr->y2 - s->fr->y1) * s->fr->zoom;
 	x = 0;
-	while (x < image_x && x < S_WIDTH)
+	while (x < S_WIDTH)
 	{
 		y = 0;
-		while (y < image_y && y < S_HEIGHT)
+		while (y < S_HEIGHT)
 		{
+		//	if (y > s->fr->zy - 100 && y < s->fr->zy + 100)
 			func_mandel(x, y, s);
 			y++;
 		}
 		x++;
 	}
-}
-
-void	init_mandel(t_frac *mand)
-{
-	mand->x1 = -2.1;
-	mand->x2 = 0.6;
-	mand->y1 = -1.2;
-	mand->y2 = 1.2;
-	mand->iter = 50;
-}
-
-void	zoom_mandel(t_env *s, double x, double y)
-{
-	s->fr->x1 = (x/s->zoom) - s->fr->h;
-	s->fr->x2 = (x/s->zoom) + s->fr->h;
-	s->fr->y1 = (y/s->zoom) - s->fr->h;
-	s->fr->y2 = (y/s->zoom) + s->fr->h;
-	printf("x1 = %f \n x2 = %f \n y1 = %f \n y2 = %f \n", s->fr->x1,
-			s->fr->x2, s->fr->y1, s->fr->y2);
-	s->zoom += 10;
 }
