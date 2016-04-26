@@ -18,7 +18,7 @@ void	put_pixel_in_image(int x, int y, int i, t_env *s)
 	int octet;
 	int color;
 
-	color = ((i * 255/(int)s->fr->iter) << 16) + (0 << 8) + (0);
+	color = ((i * 4 * 255/(int)s->fr->iter) << 16) + (0 << 8) + (0);
 	octet = s->bpp / 8;
 	pl = (x * (s->bpp / 8)) + (y * s->line);
 	if (x >= 0 && y >= 0 && x < S_WIDTH && y < S_HEIGHT)

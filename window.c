@@ -31,7 +31,10 @@ int		mouse_h(int button, int x, int y, t_env *s)
 	s->img_ptr = mlx_new_image(s->mlx, S_WIDTH, S_HEIGHT);
 	s->img = mlx_get_data_addr(s->img_ptr, &(s->bpp), &(s->line), &(s->endi));
 	if (button == 1)
+	{
+		ft_putstr("hergef");
 		ft_zoom(s, x, y);
+	}
 	aff_fractal(s);
 	mlx_put_image_to_window(s->mlx, s->win, s->img_ptr, 0, 0);
 	return (0);

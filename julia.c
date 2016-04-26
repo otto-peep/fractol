@@ -14,14 +14,13 @@
 
 void	func_julia(double x, double y, t_env *s)
 {
-	double	c_r = 0.285;
-	double	c_i = 0.01;
+	double	c_r = 0.4;
+	double	c_i = 0.1;
 	double	z_r = x / s->fr->zoom + s->fr->x1;
 	double	z_i = y / s->fr->zoom + s->fr->y1;
 	int i = 0;
 	double tmp;
 	
-	ft_putstr("julia");
 	while (z_r * z_r + z_i * z_i < 4 && i < s->fr->iter)
 	{
 		tmp = z_r;
@@ -45,10 +44,10 @@ void	julia(t_env *s)
 	s->fr->img_x = (s->fr->x2 - s->fr->x1) * s->fr->zoom;
 	s->fr->img_y = (s->fr->y2 - s->fr->y1) * s->fr->zoom;
 	x = 0;
-	while (x < s->fr->img_x)
+	while (x < S_WIDTH)
 	{
 		y = 0;
-		while (y < s->fr->img_y)
+		while (y < S_HEIGHT)
 		{
 			func_julia(x, y, s);
 			y++;
