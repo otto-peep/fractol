@@ -22,13 +22,15 @@ void	aff_fractal(t_env *s)
 
 void	ft_init(t_env *s)
 {
-	s->fr->zoom = 600;
+	s->fr->zoom = 400;
 	if (s->w == 1)
 	{
 		s->fr->x1 = -2.1;
 		s->fr->x2 = 0.6;
 		s->fr->y1 = -1.2;
 		s->fr->y2 = 1.2;
+		s->fr->img_x = (s->fr->x2 - s->fr->x1) * s->fr->zoom;
+		s->fr->img_y = (s->fr->y2 - s->fr->y1) * s->fr->zoom;
 		s->fr->iter = 150;
 	}
 	else if (s->w == 2)
@@ -37,13 +39,7 @@ void	ft_init(t_env *s)
 		s->fr->x2 = 1.5;
 		s->fr->y1 = -1.5;
 		s->fr->y2 = 1.5;
-		s->fr->zoom = 100;
 		s->fr->iter = 150;
 	}
 }
 
-
-void	ft_zoom(t_env *s, double x, double y)
-{
-	
-}

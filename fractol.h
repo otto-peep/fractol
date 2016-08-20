@@ -67,7 +67,13 @@ typedef struct	s_frac
 	double		y_zoom;
 	double		img_x;
 	double		img_y;
-	int			zoom;
+	double		c_r;
+	double		c_i;
+	double		z_r;
+	double		z_i;
+	double		i;
+	double		tmp;
+	double		zoom;
 	int			zx;
 	int			zy;
 }				t_frac;
@@ -85,12 +91,19 @@ typedef struct	s_env
 	t_frac		*fr;
 }				t_env;
 
+typedef struct	s_zoom
+{
+	int	j;
+	int	k;
+	int	l;
+	int	m;
+}				t_zoom;
+
 void	aff_fractal(t_env *s);
 void	ft_setwin(t_env *stock);
 int		key_h(int keycode, t_env *stock);
 void	mandel(t_env *stock);
 void	put_pixel_in_image(int x, int y, int i, t_env *stock);
-void	ft_zoom(t_env *s, double x, double y);
 void	julia(t_env *s);
 void	ft_init(t_env *s);
 #endif

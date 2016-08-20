@@ -14,24 +14,22 @@
 
 void	func_mandel(double x, double y, t_env *s)
 {
-	double c_r = x / s->fr->zoom - 2.1;
-	double c_i = y / s->fr->zoom - 1.2;
-	double z_r = 0;
-	double z_i = 0;
-	double i = 0;
-	double tmp;
-
-	while (z_r * z_r + z_i * z_i < 4 && i < s->fr->iter)
+	s->fr->c_r = x / s->fr->zoom + s->fr->x1;
+	s->fr->c_i = y / s->fr->zoom - s->fr->y1;
+	s->fr->z_r = 0;
+	s->fr->z_i = 0;
+	s->fr->i = 0;
+	while (s->fr->z_r * s->fr->z_r + s->fr->z_i * s->fr->z_i < 4 && s->fr->i < s->fr->iter)
 	{
-		tmp = z_r;
-		z_r = z_r * z_r - z_i * z_i + c_r;
-		z_i = 2 * z_i * tmp + c_i;
-		i++;
+		s->fr->tmp = s->fr->z_r;
+		s->fr->z_r = s->fr->z_r * s->fr->z_r - s->fr->z_i * s->fr->z_i + s->fr->c_r;
+		s->fr->z_i = 2 * s->fr->z_i * s->fr->tmp + s->fr->c_i;
+		s->fr->i++;
 	}
-	if (i == s->fr->iter)
+	if (s->fr->i == s->fr->iter)
 		put_pixel_in_image(x, y, 1, s);
 	else
-		put_pixel_in_image(x, y, i, s);
+		put_pixel_in_image(x, y, s->fr->i, s);
 	return ;
 
 }
@@ -40,9 +38,9 @@ void	mandel(t_env *s)
 {
 	double x;
 	double y;
-	s->fr->img_x = (s->fr->x2 - s->fr->x1) * s->fr->zoom;
-	s->fr->img_y = (s->fr->y2 - s->fr->y1) * s->fr->zoom;
+
 	x = 0;
+	ft_putendl("helloworld");
 	while (x < S_WIDTH)
 	{
 		y = 0;
