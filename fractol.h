@@ -43,8 +43,8 @@
 # define KEY_M 46
 
 
-# define S_WIDTH 1000
-# define S_HEIGHT 1000
+# define S_WIDTH 1200
+# define S_HEIGHT 600
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -55,8 +55,10 @@
 # include <fcntl.h>
 #include <unistd.h>
 
-typedef struct	s_frac
+typedef struct	s_mem
 {
+	double		x;
+	double		y;
 	double		x1;
 	double		x2;
 	double		y1;
@@ -76,10 +78,6 @@ typedef struct	s_frac
 	double		zoom;
 	int			zx;
 	int			zy;
-}				t_frac;
-
-typedef struct	s_env
-{
 	int			w;
 	void		*win;
 	void		*mlx;
@@ -88,8 +86,8 @@ typedef struct	s_env
 	int			bpp;
 	int			endi;
 	int			line;
-	t_frac		*fr;
-}				t_env;
+	double			color;
+}				t_mem;
 
 typedef struct	s_zoom
 {
@@ -99,11 +97,11 @@ typedef struct	s_zoom
 	int	m;
 }				t_zoom;
 
-void	aff_fractal(t_env *s);
-void	ft_setwin(t_env *stock);
-int		key_h(int keycode, t_env *stock);
-void	mandel(t_env *stock);
-void	put_pixel_in_image(int x, int y, int i, t_env *stock);
-void	julia(t_env *s);
-void	ft_init(t_env *s);
+void	aff_fractal(t_mem *s);
+void	ft_setwin(t_mem *stock);
+int		key_h(int keycode, t_mem *stock);
+void	mandel(t_mem *stock);
+void	put_pixel_in_image(int x, int y, int i, t_mem *stock);
+void	julia(t_mem *s);
+void	ft_init(t_mem *s);
 #endif

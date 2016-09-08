@@ -12,44 +12,39 @@
 
 #include "fractol.h"
 
-void	func_mandel(double x, double y, t_env *s)
+void	func_mandel(t_mem *s)
 {
-	s->fr->c_r = x / s->fr->zoom + s->fr->x1;
-	s->fr->c_i = y / s->fr->zoom - s->fr->y1;
-	s->fr->z_r = 0;
-	s->fr->z_i = 0;
-	s->fr->i = 0;
-	while (s->fr->z_r * s->fr->z_r + s->fr->z_i * s->fr->z_i < 4 && s->fr->i < s->fr->iter)
+	s->c_r = s->x / s->zoom + s->x1;
+	s->c_i = s->y / s->zoom + s->y1;
+	s->z_r = 0;
+	s->z_i = 0;
+	s->i = 0;
+	while (s->z_r * s->z_r + s->z_i * s->z_i < 4 && s->i < s->iter)
 	{
-		s->fr->tmp = s->fr->z_r;
-		s->fr->z_r = s->fr->z_r * s->fr->z_r - s->fr->z_i * s->fr->z_i + s->fr->c_r;
-		s->fr->z_i = 2 * s->fr->z_i * s->fr->tmp + s->fr->c_i;
-		s->fr->i++;
+		s->tmp = s->z_r;
+		s->z_r = s->z_r * s->z_r - s->z_i * s->z_i + s->c_r;
+		s->z_i = 2 * s->z_i * s->tmp + s->c_i;
+		s->i++;
 	}
-	if (s->fr->i == s->fr->iter)
-		put_pixel_in_image(x, y, 1, s);
+	if (s->i == s->iter)
+		put_pixel_in_image(s->x, s->y, s->i, s);
 	else
-		put_pixel_in_image(x, y, s->fr->i, s);
+		put_pixel_in_image(s->x, s->y, s->i, s);
 	return ;
 
 }
 
-void	mandel(t_env *s)
+void	mandel(t_mem *s)
 {
-	double x;
-	double y;
-
-	x = 0;
-	ft_putendl("helloworld");
-	while (x < S_WIDTH)
+	s->x = 0;
+	while (s->x < S_WIDTH)
 	{
-		y = 0;
-		while (y < S_HEIGHT)
+		s->y = 0;
+		while (s->y < S_HEIGHT)
 		{
-		//	if (y > s->fr->zy - 100 && y < s->fr->zy + 100)
-			func_mandel(x, y, s);
-			y++;
+			func_mandel(s);
+			s->y++;
 		}
-		x++;
+		s->x++;
 	}
 }

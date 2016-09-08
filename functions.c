@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void	aff_fractal(t_env *s)
+void	aff_fractal(t_mem *s)
 {
 	if (s->w == 1)
 		mandel(s);
@@ -20,26 +20,27 @@ void	aff_fractal(t_env *s)
 		julia(s);
 }
 
-void	ft_init(t_env *s)
+void	ft_init(t_mem *s)
 {
-	s->fr->zoom = 400;
+	s->color = 0.2;
+	s->zoom = 400;
 	if (s->w == 1)
 	{
-		s->fr->x1 = -2.1;
-		s->fr->x2 = 0.6;
-		s->fr->y1 = -1.2;
-		s->fr->y2 = 1.2;
-		s->fr->img_x = (s->fr->x2 - s->fr->x1) * s->fr->zoom;
-		s->fr->img_y = (s->fr->y2 - s->fr->y1) * s->fr->zoom;
-		s->fr->iter = 150;
+		s->x1 = -2.1;
+		s->x2 = 0.6;
+		s->y1 = -1.2;
+		s->y2 = 1.2;
+		s->img_x = (s->x2 - s->x1) * s->zoom;
+		s->img_y = (s->y2 - s->y1) * s->zoom;
+		s->iter = 50;
 	}
 	else if (s->w == 2)
 	{
-		s->fr->x1 = -1.5;
-		s->fr->x2 = 1.5;
-		s->fr->y1 = -1.5;
-		s->fr->y2 = 1.5;
-		s->fr->iter = 150;
+		s->x1 = -1.5;
+		s->x2 = 1.5;
+		s->y1 = -1.5;
+		s->y2 = 1.5;
+		s->iter = 150;
 	}
 }
 
