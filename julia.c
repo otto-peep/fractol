@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 13:47:53 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/19 15:16:55 by pconin           ###   ########.fr       */
+/*   Updated: 2016/09/08 15:54:27 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,9 @@ void	julia(t_mem *s)
 	}
 }
 
+int		julia_event(int x, int y, t_mem *s)
+{
+	printf("%i, %i\n", x, y);
+	ft_putendl("heyo");
+	return (0);
+}

@@ -11,7 +11,9 @@ SRC = main.c	\
 	  draw.c	\
 	  mandel.c	\
 	  functions.c	\
-	  julia.c
+	  julia.c	\
+	  move.c	\
+	  budha.c
 
 HOMEPATH = -lm -L libft/ -lft -L./minilibx_macos -I./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 

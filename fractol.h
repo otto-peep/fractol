@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 18:06:09 by pconin            #+#    #+#             */
-/*   Updated: 2016/04/19 15:20:31 by pconin           ###   ########.fr       */
+/*   Updated: 2016/09/08 14:02:23 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define KEY_B 11
 # define KEY_N 45
 # define KEY_M 46
+# define KEY_LS 69
+# define KEY_PL 78
 
 
 # define S_WIDTH 1200
@@ -57,6 +59,7 @@
 
 typedef struct	s_mem
 {
+	double		spd;
 	double		x;
 	double		y;
 	double		x1;
@@ -104,4 +107,11 @@ void	mandel(t_mem *stock);
 void	put_pixel_in_image(int x, int y, int i, t_mem *stock);
 void	julia(t_mem *s);
 void	ft_init(t_mem *s);
+
+//move.c
+void	ft_speed(int keycode, t_mem *s);
+void	ft_move(double *a, double *b, int code, t_mem *s);
+void	ft_zoom(t_mem *s, int x, int y, int code);
+void	ft_putstr_win(t_mem *stock);
+int		julia_event(int x, int y, t_mem *s);
 #endif
