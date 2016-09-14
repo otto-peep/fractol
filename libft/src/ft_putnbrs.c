@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putnbrs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/07 18:55:05 by pconin            #+#    #+#             */
-/*   Updated: 2016/02/17 19:35:17 by pconin           ###   ########.fr       */
+/*   Created: 2016/08/23 16:08:45 by pconin            #+#    #+#             */
+/*   Updated: 2016/08/23 16:13:19 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
+#include "libft.h"
 
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 1
-# define SPLITTER '\n'
-
-int		get_next_line(int const fd, char **line);
-
-#endif
+void	ft_putnbrs(int nbr)
+{
+	ft_putnbr(nbr);
+	ft_putchar(' ');
+}

@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 16:27:59 by pconin            #+#    #+#             */
-/*   Updated: 2016/02/17 19:34:48 by pconin           ###   ########.fr       */
+/*   Updated: 2016/09/13 14:00:16 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/uio.h>
-#include "get_next_line.h"
 
 static int		found_newline(char *tmp)
 {

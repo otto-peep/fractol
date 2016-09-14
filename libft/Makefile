@@ -1,6 +1,9 @@
 NAME = libft.a
 
-SRC =  ./get_next_line.c \
+FILES = ./ft_lastchr.c	\
+	./ft_putnbrs.c	\
+	./ft_putstrs.c	\
+	./get_next_line.c \
 	./ft_putchar.c	\
 	./ft_putstr.c	\
 	./ft_strdup.c	\
@@ -66,85 +69,27 @@ SRC =  ./get_next_line.c \
 	./ft_lstaddback.c	\
 	./ft_printbits.c
 
-OB = 	./get_next_line.o	\
-	./ft_putchar.o	\
-	./ft_putstr.o	\
-	./ft_strdup.o	\
-	./ft_strlen.o	\
-	./ft_strcpy.o	\
-	./ft_strncpy.o	\
-	./ft_strclr.o	\
-	./ft_striter.o	\
-	./ft_putendl.o	\
-	./ft_putchar_fd.o	\
-	./ft_putstr_fd.o	\
-	./ft_putendl_fd.o	\
-	./ft_putnbr.o	\
-	./ft_putnbr_fd.o	\
-	./ft_atoi.o		\
-	./ft_memset.o	\
-	./ft_bzero.o	\
-	./ft_isalpha.o	\
-	./ft_isdigit.o	\
-	./ft_isalnum.o	\
-	./ft_isascii.o	\
-	./ft_isprint.o	\
-	./ft_strcat.o	\
-	./ft_toupper.o	\
-	./ft_tolower.o	\
-	./ft_strncat.o	\
-	./ft_strchr.o	\
-	./ft_strrchr.o	\
-	./ft_strstr.o	\
-	./ft_strnstr.o	\
-	./ft_strcmp.o	\
-	./ft_strncmp.o	\
-	./ft_memcpy.o	\
-	./ft_memccpy.o	\
-	./ft_memalloc.o	\
-	./ft_memdel.o	\
-	./ft_strnew.o	\
-	./ft_strdel.o	\
-	./ft_strsub.o	\
-	./ft_strjoin.o	\
-	./ft_striteri.o	\
-	./ft_strmap.o	\
-	./ft_strmapi.o	\
-	./ft_strequ.o	\
-	./ft_strnequ.o	\
-	./ft_strtrim.o	\
-	./ft_memmove.o	\
-	./ft_memchr.o	\
-	./ft_memcmp.o	\
-	./ft_strsplit.o	\
-	./ft_strlcat.o	\
-	./ft_itoa.o		\
-	./ft_lstnew.o	\
-	./ft_lstdelone.o	\
-	./ft_lstdel.o	\
-	./ft_lstadd.o	\
-	./ft_lstiter.o	\
-	./ft_lstmap.o	\
-	./ft_isspace.o	\
-	./ft_isblank.o	\
-	./ft_isupper.o	\
-	./ft_sqrt.o		\
-	./ft_lstaddback.o	\
-	./ft_printbits.o
+SRCPATH = ./src/
+
+SRC = $(FILES:%c=$(SRCPATH)%c)
+
+OB = $(patsubst %.c,%.o,$(FILES))
 
 HDER = ./libft.h
 
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Wextra -Werror -c $(SRC)
-	ar rc $(NAME) $(OB)
-	ranlib $(NAME)
+	@echo Compiling libft
+	@gcc -Wall -Wextra -Werror -c $(SRC)
+	@ar rc $(NAME) $(OB)
+	@ranlib $(NAME)
 
 clean:
-	rm -f $(OB)
+	@echo Cleaning libft
+	@rm -f $(OB)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
