@@ -1,31 +1,33 @@
 NAME = fractol
 
-HEAD = fractol.h
+HEAD = ./include/
 
 PATH_LIB = ./libft/
 
+PATH1 = ./src/
+
 FLAGS = -Wall -Wextra -Werror
 
-SRC = main.c	\
-	  window.c	\
-	  draw.c	\
-	  mandel.c	\
-	  functions.c	\
-	  julia.c	\
-	  move.c	\
+FILES = main.c\
+	  window.c\
+	  draw.c\
+	  mandel.c\
+	  functions.c\
+	  julia.c\
+	  move.c\
 	  budha.c
 
-HOMEPATH = -lm -L libft/ -lft -L./minilibx_macos -I./minilibx_macos -lmlx -framework OpenGL -framework AppKit
+SRC = $(FILES:%c=$(PATH1)%c)
 
-SCHPATH = -lm -L libft/ -lft -lmlx -framework OpenGL -framework AppKit
+STATICPATH = -lm -L libft/ -lft -L./minilibx_macos -I./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 
-OBJ = $(patsubst %.c,%.o,$(SRC))
+MLXPATH = -lm -L libft/ -lft -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
 $(NAME):
 	make -C libft/
-	gcc -o $(NAME) $(SRC) -I $(HEAD) $(HOMEPATH)
+	gcc -o $(NAME) $(SRC) -I $(HEAD) $(STATICPATH)
 
 clean :
 	make -C libft/ clean

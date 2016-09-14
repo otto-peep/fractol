@@ -51,7 +51,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "mlx.h"
-#include "./libft/libft.h"
+#include "../libft/libft.h"
 #include <string.h>
 #include <math.h>
 # include <fcntl.h>
