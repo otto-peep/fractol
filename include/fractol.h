@@ -114,4 +114,5 @@ void	ft_move(double *a, double *b, int code, t_mem *s);
 void	ft_zoom(t_mem *s, int x, int y, int code);
 void	ft_putstr_win(t_mem *stock);
 int		julia_event(int x, int y, t_mem *s);
+void	func_bship(t_mem *s);
 #endif

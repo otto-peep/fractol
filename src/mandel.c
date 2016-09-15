@@ -26,9 +26,6 @@ void	func_mandel(t_mem *s)
 		s->z_i = 2 * s->z_i * s->tmp + s->c_i;
 		s->i++;
 	}
-	if (s->i == s->iter)
-		put_pixel_in_image(s->x, s->y, s->i, s);
-	else
 		put_pixel_in_image(s->x, s->y, s->i, s);
 	return ;
 

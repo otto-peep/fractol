@@ -15,7 +15,8 @@ FILES = main.c\
 	  functions.c\
 	  julia.c\
 	  move.c\
-	  budha.c
+	  budha.c	\
+	  bship.c
 
 SRC = $(FILES:%c=$(PATH1)%c)
 

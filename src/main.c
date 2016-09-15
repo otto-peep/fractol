@@ -50,6 +50,8 @@ int		main(int argc, char **argv)
 		launch(2, &mem);
 	else if (ft_strcmp(argv[i], "budha") == 0)
 		launch(3, &mem);
+	else if (ft_strcmp(argv[i], "bship") == 0)
+		launch(4, &mem);
 	else
 		ft_aff_option();
 	return (0);
