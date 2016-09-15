@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:35:23 by pconin            #+#    #+#             */
-/*   Updated: 2016/09/08 15:11:42 by pconin           ###   ########.fr       */
+/*   Updated: 2016/09/15 18:11:55 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		key_h(int keycode, t_mem *s)
 		ft_move(&(s->y1), &(s->y2), 1, s);
 	if (keycode == KEY_I)
 		ft_init(s);
+	if (keycode == KEY_C)
+		change_color(s);
 	printf("%s%f\n%s%i\n", "iter", s->iter, "keycode", keycode);
 	mlx_clear_window(s->mlx, s->win);
 	aff_fractal(s);
@@ -70,6 +72,7 @@ void	ft_setwin(t_mem *s)
 {
 	s->h = 0.9;
 	ft_init(s);
+	change_color(s);
 	s->mlx = mlx_init();
 	s->win = mlx_new_window(s->mlx, S_WIDTH, S_HEIGHT, "Fractol 42");
 	s->img_ptr = mlx_new_image(s->mlx, S_WIDTH, S_HEIGHT);

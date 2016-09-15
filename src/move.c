@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/08 10:13:53 by pconin            #+#    #+#             */
-/*   Updated: 2016/09/08 12:49:11 by pconin           ###   ########.fr       */
+/*   Updated: 2016/09/15 18:11:56 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_speed(int keycode, t_mem *s)
 {
 	if (keycode == KEY_LS)
-		s->spd += 0.1;
-	else if (s->spd > 0.1)
-		s->spd -= 0.1;
+		s->spd += 0.2;
+	else if (s->spd > 0.2)
+		s->spd -= 0.2;
 }
 
 void	ft_move(double *a, double *b, int code, t_mem *s)

@@ -6,7 +6,7 @@
 /*   By: pconin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 18:06:09 by pconin            #+#    #+#             */
-/*   Updated: 2016/09/08 14:02:23 by pconin           ###   ########.fr       */
+/*   Updated: 2016/09/15 17:52:39 by pconin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ typedef struct	s_mem
 	int			endi;
 	int			line;
 	double			color;
+	int			clr_r;
+	int			clr_g;
+	int			clr_b;
 }				t_mem;
 
 typedef struct	s_zoom
@@ -115,4 +118,5 @@ void	ft_zoom(t_mem *s, int x, int y, int code);
 void	ft_putstr_win(t_mem *stock);
 int		julia_event(int x, int y, t_mem *s);
 void	func_bship(t_mem *s);
+void	change_color(t_mem *s);
 #endif
