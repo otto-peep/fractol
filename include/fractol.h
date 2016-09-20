@@ -78,9 +78,8 @@ typedef struct	s_mem
 	double		z_i;
 	double		i;
 	double		tmp;
+	double		tmp_i;
 	double		zoom;
-	int			zx;
-	int			zy;
 	int			w;
 	void		*win;
 	void		*mlx;
@@ -93,15 +92,8 @@ typedef struct	s_mem
 	int			clr_r;
 	int			clr_g;
 	int			clr_b;
+	int			blok_julia;
 }				t_mem;
-
-typedef struct	s_zoom
-{
-	int	j;
-	int	k;
-	int	l;
-	int	m;
-}				t_zoom;
 
 void	aff_fractal(t_mem *s);
 void	ft_setwin(t_mem *stock);
@@ -118,5 +110,7 @@ void	ft_zoom(t_mem *s, int x, int y, int code);
 void	ft_putstr_win(t_mem *stock);
 int		julia_event(int x, int y, t_mem *s);
 void	func_bship(t_mem *s);
+void	func_bbird(t_mem *s);
 void	change_color(t_mem *s);
+void	adjust_color(t_mem *s, int keycode);
 #endif

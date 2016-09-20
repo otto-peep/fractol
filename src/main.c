@@ -15,7 +15,7 @@
 void	ft_aff_option(void)
 {
 	ft_putstr("you have to chose one or many of those options as argument(s) : \n");
-	ft_putstr("mandelbrot\njulia\nbudha");
+	ft_putstr("mandelbrot\njulia\nbship\nbbird");
 	exit(0);
 }
 
@@ -27,6 +27,7 @@ void	launch(int w, t_mem *s)
 	if (father > 0)
 	{
 		s->w = w;
+		ft_init(s);
 		ft_setwin(s);
 		return ;
 	}
@@ -41,18 +42,20 @@ int		main(int argc, char **argv)
 	int i;
 
 	i = 0;
-	if (argc < 2)
+	if (argc < 2 || argc > 5)
 		ft_aff_option();
 	while (argv[++i])
-	if (strcmp(argv[i], "mandelbrot") == 0)
-		launch(1, &mem);
-	else if (ft_strcmp(argv[i], "julia") == 0)
-		launch(2, &mem);
-	else if (ft_strcmp(argv[i], "budha") == 0)
-		launch(3, &mem);
-	else if (ft_strcmp(argv[i], "bship") == 0)
-		launch(4, &mem);
-	else
-		ft_aff_option();
+	{
+		if (strcmp(argv[i], "mandelbrot") == 0)
+			launch(1, &mem);
+		else if (ft_strcmp(argv[i], "julia") == 0)
+			launch(2, &mem);
+		else if (ft_strcmp(argv[i], "bship") == 0)
+			launch(3, &mem);
+		else if (ft_strcmp(argv[i], "bbird") == 0)
+			launch(4, &mem);
+		else
+			ft_aff_option();
+	}
 	return (0);
 }

@@ -1,13 +1,5 @@
 #include "fractol.h"
 
-int		ft_abs(int a)
-{
-	if (a < 0)
-		return (-a);
-	else
-		return (a);
-}
-
 void	func_bship(t_mem *s)
 {
 	s->x = 0;
@@ -24,8 +16,8 @@ void	func_bship(t_mem *s)
 			while (s->z_r * s->z_r + s->z_i * s->z_i < 4 && s->i < s->iter)
 			{
 				s->tmp = s->z_r;
-				s->z_r = s->z_r * s->z_r - s->z_i + s->z_i + s->c_r;
-				s->z_i = s->c_i + (ft_abs(s->z_i) * ft_abs(s->tmp)) * (ft_abs(s->z_i) * ft_abs(s->tmp));
+				s->z_r = s->z_r * s->z_r - s->z_i * s->z_i + s->c_r;
+				s->z_i =  2 * fabs(s->z_i * s->tmp) + s->c_i;
 				s->i++;
 			}
 			put_pixel_in_image(s->x, s->y, s->i, s);
@@ -33,7 +25,7 @@ void	func_bship(t_mem *s)
 	}
 	return;
 }
-/*/
+
 void	func_bbird(t_mem *s)
 {
 	s->x = 0;
@@ -50,6 +42,13 @@ void	func_bbird(t_mem *s)
 			while (s->z_r * s->z_r + s->z_i * s->z_i < 4 && s->i < s->iter)
 			{
 				s->tmp = s->z_r;
-				s->z_r = s->z_r * s->z_r - s->z_i + s->z_i + s->c_r;
-				if (s->z_i 
-} /*/
+				s->z_r = ((s->z_r * s->z_r) -
+				(s->z_i * s->z_i * 3) * fabs(s->z_i)) + s->c_r;
+				s->z_i = (s->tmp * s->tmp * 3 -
+				(s->z_i * s->z_i)) * fabs(s->z_i) + s->c_i;
+				s->i++;
+			}
+			put_pixel_in_image(s->x, s->y, s->i, s);
+		}
+	}
+}

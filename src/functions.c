@@ -18,15 +18,18 @@ void	aff_fractal(t_mem *s)
 		mandel(s);
 	else if (s->w == 2)
 		julia(s);
-	else if (s->w == 4)
+	else if (s->w == 3)
 		func_bship(s);
+	else if (s->w == 4)
+		func_bbird(s);
 }
 
 void	ft_init(t_mem *s)
 {
+	s->blok_julia = 0;
 	s->spd = 2;
 	s->color = 1;
-	s->zoom = 100;
+	s->zoom = 400;
 	if (s->w == 1)
 	{
 		s->x1 = -2.1;
@@ -39,19 +42,20 @@ void	ft_init(t_mem *s)
 	}
 	else if (s->w == 2)
 	{
+		s->zoom = 200;
 		s->x1 = -1.5;
 		s->x2 = 1.5;
 		s->y1 = -1.5;
 		s->y2 = 1.5;
 		s->iter = 150;
 	}
-	else if (s->w == 4)
+	else if (s->w == 3 || s->w == 4)
 	{
-		s->x1 = -1.7;;
-		s->x2 = 1;
-		s->y1 = -1.7;
+		s->x1 = -2.1;
+		s->x2 = 0.65;
+		s->y1 = -1.2;
 		s->y2 = 1.7;
-		s->iter = 100;
+		s->iter = 14;
 		s->img_x = (s->x2 - s->x1) * s->zoom;
 		s->img_y = (s->y2 - s->y1) * s->zoom;
 	}

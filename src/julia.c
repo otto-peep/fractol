@@ -14,8 +14,8 @@
 
 void	func_julia(double x, double y, t_mem *s)
 {
-	double	c_r = 0.4;
-	double	c_i = 0.1;
+	double	c_r = -0.8 + 0.005 * s->x_zoom;
+	double	c_i = 0.1 + 0.005 * s->y_zoom;
 	double	z_r = x / s->zoom + s->x1;
 	double	z_i = y / s->zoom + s->y1;
 	int i = 0;
@@ -41,8 +41,6 @@ void	julia(t_mem *s)
 	double x;
 	double y;
 	
-	s->img_x = (s->x2 - s->x1) * s->zoom;
-	s->img_y = (s->y2 - s->y1) * s->zoom;
 	x = 0;
 	while (x < S_WIDTH)
 	{
@@ -58,7 +56,13 @@ void	julia(t_mem *s)
 
 int		julia_event(int x, int y, t_mem *s)
 {
-	printf("%i, %i\n", x, y);
-	ft_putendl("heyo");
+	if (s->w == 2 && s->blok_julia == 0)
+	{
+		s->x_zoom = x;
+		s->y_zoom = y;
+		aff_fractal(s);
+		mlx_put_image_to_window(s->mlx, s->win, s->img_ptr, 0, 0);
+		ft_putstr_win(s);
+	}
 	return (0);
 }

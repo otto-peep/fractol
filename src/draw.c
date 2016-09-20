@@ -12,14 +12,31 @@
 
 #include "fractol.h"
 
+void	adjust_color(t_mem *s, int k)
+{
+	if (k == KEY_Y)
+		s->clr_r += 10;
+	else if (k == KEY_H)
+		s->clr_r -= 10;
+	else if (k == KEY_U)
+		s->clr_g += 10;
+	else if (k == KEY_J)
+		s->clr_g -= 10;
+	else if (k == KEY_I)
+		s->clr_b += 10;
+	else if (k == KEY_K)
+		s->clr_b -= 10;
+	printf("r = %i, g = %i, b = %i\n", s->clr_r, s->clr_g, s->clr_b);
+}	//r40g330b560 
+	// julia = r-10g345b80
 void	change_color(t_mem *s)
 {
 	
 	if (s->color == 1)
 	{
-		s->clr_r = 255;
-		s->clr_g = 180;
-		s->clr_b = 100;
+		s->clr_r = 0;
+		s->clr_g = 0;
+		s->clr_b = 0;
 		s->color = 2;
 	}
 	else if (s->color == 2)
@@ -46,10 +63,10 @@ int	ft_color(int i, t_mem *s)
 	int b;
 	if (i == s->iter)
 		return (1);
-	c = 0.4 * (i + 1); // 0.3 ancienement s->color
-	r = cos(c) * s->clr_r + 128;
-	g = cos(c) * s->clr_g + 129;
-	b = cos(c) * s->clr_b + 130;
+	c = 0.3 * (i + 1); // 0.3 ancienement s->color
+	r = cos(c) * s->clr_r + 10;
+	g = cos(c) * s->clr_g + 20;
+	b = cos(c) * s->clr_b + 30;
 //	printf("r = %i g = %i b = %i", r, g, b);
 	return ((r << 16) + (b << 8) + g);
 }

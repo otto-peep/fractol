@@ -34,51 +34,22 @@ void	ft_move(double *a, double *b, int code, t_mem *s)
 	}
 }
 
-void	ft_zoom(t_mem *s, int x, int y, int code)
+void	ft_zoom_in(t_mem *s, int x, int y)
 {
-	double h;
+	double	a;
+	double	b;
+	double	sx;
+	double	sy;
 
-	printf("x=%i y=%i\n", x, y);
-	h = 0.01;
-	if (code == 1)
+	sx = s->x2 - s->x1;
+	sy = s->y2 - s->y1;
+	a = s->x1 + x * sx / s->img_y
+	if (x >= 0 && x < S_HEIGHT && y >= 0 && y < S_WIDTH)
 	{
-		s->zoom *= 2;
-	//	s->x1 = x - h;
-	//	s->x2 = x + h;
-	//	s->y1 = y - h;
-	//	s->y2 = y + h;
+		
+		if (code == 1)
+			s->zoom *= 2;
+		else if (code == 0)
+			s->zoom /= 2;
 	}
-	else if (code == 0)
-
-		;
-/*/	double dx;
-	double dy;
-	t_zoom t;
-
-	dy = 0;
-	dx = 0;
-	t.j = s->x1;
-	t.k = s->x2;
-	t.l = s->y1;
-	t.m = s->y2;
-	dx = s->x1 + x * (s->x2 - s->x1) / s->img_x;
-	dy = s->y1 + y * (s->y2 - s->y1) / s->img_y;
-	if (code == 1)
-	{
-		s->zoom *= 2;
-		s->x1 = dx - (t.k - t.j) / 4;
-		s->x2 = dx + (t.k - t.j) / 4;
-		s->y1 = dy - (t.m - t.l) / 4;
-		s->y2 = dy + (t.m - t.l) / 4;
-		s->iter *= 2;
-	}
-	else if (code == 0)
-	{
-		s->zoom /= 2;
-		s->x1 = dx - (t.k - t.j);
-		s->x2 = dx + (t.k - t.j);
-		s->y1 = dy - (t.m - t.l);
-		s->y2 = dy + (t.m - t.l);
-		s->iter /= 2;
-	}/*/
 }
