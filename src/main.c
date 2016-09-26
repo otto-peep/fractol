@@ -15,7 +15,7 @@
 void	ft_aff_option(void)
 {
 	ft_putstr("you have to chose one or many of those options as argument(s) : \n");
-	ft_putstr("mandelbrot\njulia\nbship\nbbird");
+	ft_putstr("mandelbrot\njulia\nbship\nbbird\ncross");
 	exit(0);
 }
 
@@ -54,6 +54,8 @@ int		main(int argc, char **argv)
 			launch(3, &mem);
 		else if (ft_strcmp(argv[i], "bbird") == 0)
 			launch(4, &mem);
+		else if (ft_strcmp(argv[i], "cross") == 0)
+			launch(5, &mem);
 		else
 			ft_aff_option();
 	}

@@ -34,10 +34,10 @@ void	func_mandel(t_mem *s)
 void	mandel(t_mem *s)
 {
 	s->x = 0;
-	while (s->x < S_WIDTH)
+	while (s->x < s->img_x)
 	{
 		s->y = 0;
-		while (s->y < S_HEIGHT)
+		while (s->y < s->img_y)
 		{
 			func_mandel(s);
 			s->y++;

@@ -45,7 +45,7 @@
 # define KEY_PL 78
 
 
-# define S_WIDTH 1200
+# define S_WIDTH 1000
 # define S_HEIGHT 600
 
 #include <stdlib.h>
@@ -60,8 +60,8 @@
 typedef struct	s_mem
 {
 	double		spd;
-	double		x;
-	double		y;
+	unsigned int		x;
+	unsigned int		y;
 	double		x1;
 	double		x2;
 	double		y1;
@@ -70,13 +70,13 @@ typedef struct	s_mem
 	double		h;
 	double		x_zoom;
 	double		y_zoom;
-	double		img_x;
-	double		img_y;
+	unsigned int		img_x;
+	unsigned int		img_y;
 	double		c_r;
 	double		c_i;
 	double		z_r;
 	double		z_i;
-	double		i;
+	unsigned int		i;
 	double		tmp;
 	double		tmp_i;
 	double		zoom;
@@ -93,6 +93,7 @@ typedef struct	s_mem
 	int			clr_g;
 	int			clr_b;
 	int			blok_julia;
+	int			hide;
 }				t_mem;
 
 void	aff_fractal(t_mem *s);
@@ -106,11 +107,13 @@ void	ft_init(t_mem *s);
 //move.c
 void	ft_speed(int keycode, t_mem *s);
 void	ft_move(double *a, double *b, int code, t_mem *s);
-void	ft_zoom(t_mem *s, int x, int y, int code);
+void	ft_zoom(t_mem *s, int x, int y);
+void	ft_dezoom(t_mem *s, int x, int y);
 void	ft_putstr_win(t_mem *stock);
 int		julia_event(int x, int y, t_mem *s);
 void	func_bship(t_mem *s);
 void	func_bbird(t_mem *s);
 void	change_color(t_mem *s);
 void	adjust_color(t_mem *s, int keycode);
+void	func_cross(t_mem *s);
 #endif

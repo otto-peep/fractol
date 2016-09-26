@@ -12,45 +12,35 @@
 
 #include "fractol.h"
 
-void	ft_putstr_win(t_mem *stock)
-{
-	mlx_string_put(stock->mlx, stock->win, 10, 10, 0xffffff, "Move = arrows");
-	//mlx_string_put(stock->mlx, stock->win, 10, 25, 0xffffff, "Reinit = enter");
-	mlx_string_put(stock->mlx, stock->win, 10, 40, 0xffffff, "Speed +/- = '+'/'-'");
-	mlx_string_put(stock->mlx, stock->win, 10, 55, 0xffffff, "Zoom - = 'L'");
-	mlx_string_put(stock->mlx, stock->win, 200, 10, 0xffffff, "Color = 'C'");
-	mlx_string_put(stock->mlx, stock->win, 200, 25, 0xffffff,
-			"Horizontal rotation = 'F' / 'D'");
-	mlx_string_put(stock->mlx, stock->win, 200, 40, 0xffffff,
-			"Vertical rotation = 'R' / 'E'");
-}
 
 int		key_h(int keycode, t_mem *s)
 {
-	if (keycode == KEY_R)
+	s->iter = (keycode == KEY_R) ? s->iter * 1.2 : s->iter;
+	s->iter = (keycode == KEY_F) ? s->iter / 1.2 : s->iter;
+	if (keycode == KEY_E)
 	{
 		s->blok_julia = (s->blok_julia == 1) ? 0 : 1;
 		return (0);
 	}
-	if (keycode == KEY_LS || keycode == KEY_PL)
+	else if (keycode == KEY_LS || keycode == KEY_PL)
 		ft_speed(keycode, s);
-	if (keycode == ESC)
+	else if (keycode == ESC)
 		exit(0);
-	if (keycode == 12)
-		s->iter *= 1.5;
-	if (keycode == 0)
+	else if (keycode == KEY_Q)
+		s->hide = (s->hide == 1) ? 0 : 1;
+	else if (keycode == 0)
 		ft_move(&(s->x1), &(s->x2), 0, s);
-	if (keycode == 2)
+	else if (keycode == 2)
 		ft_move(&(s->x1), &(s->x2), 1, s);
-	if (keycode == 13)
+	else if (keycode == 13)
 		ft_move(&(s->y1), &(s->y2), 0, s);
-	if (keycode == 1)
+	else if (keycode == 1)
 		ft_move(&(s->y1), &(s->y2), 1, s);
-	if (keycode == KEY_I)
+	else if (keycode == ENTER)
 		ft_init(s);
-	if (keycode == KEY_C)
+	else if (keycode == KEY_C)
 		change_color(s);
-	if (keycode == KEY_Y || keycode == KEY_H || keycode == KEY_U 
+	else if (keycode == KEY_Y || keycode == KEY_H || keycode == KEY_U 
 	|| keycode == KEY_J || keycode == KEY_I || keycode == KEY_K)
 		adjust_color(s, keycode);
 	mlx_clear_window(s->mlx, s->win);
@@ -64,9 +54,9 @@ int		mouse_h(int button, int x, int y, t_mem *s)
 {
 	mlx_clear_window(s->mlx, s->win);
 	if (button == 5 || button == 1)
-		ft_zoom(s, x, y, 1);
-	if (button == 4 || button == 2)
-		ft_zoom(s, x, y, 0);
+		ft_zoom(s, x, y);
+	else if (button == 4 || button == 2)
+		ft_dezoom(s, x, y);
 	aff_fractal(s);
 	mlx_put_image_to_window(s->mlx, s->win, s->img_ptr, 0, 0);
 	ft_putstr_win(s);
@@ -76,16 +66,17 @@ int		mouse_h(int button, int x, int y, t_mem *s)
 
 void	ft_setwin(t_mem *s)
 {
-	//change_color(s);
+	change_color(s);
 	s->mlx = mlx_init();
 	s->win = mlx_new_window(s->mlx, S_WIDTH, S_HEIGHT, "Fractol 42");
 	s->img_ptr = mlx_new_image(s->mlx, S_WIDTH, S_HEIGHT);
 	s->img = mlx_get_data_addr(s->img_ptr, &(s->bpp), &(s->line), &(s->endi));
-	aff_fractal(s);
-	ft_putstr_win(s);
-	mlx_hook(s->win, 6, (1L << 7), &julia_event, s);
+	if (s->w == 2)
+		mlx_hook(s->win, 6, (1L << 6), &julia_event, s);
 	mlx_mouse_hook(s->win, &mouse_h, s);
 	mlx_key_hook(s->win, &key_h, s);
+	aff_fractal(s);
 	mlx_put_image_to_window(s->mlx, s->win, s->img_ptr, 0, 0);
+	ft_putstr_win(s);
 	mlx_loop(s->mlx);
 }

@@ -14,24 +14,23 @@
 
 void	func_julia(double x, double y, t_mem *s)
 {
-	double	c_r = -0.8 + 0.005 * s->x_zoom;
-	double	c_i = 0.1 + 0.005 * s->y_zoom;
-	double	z_r = x / s->zoom + s->x1;
-	double	z_i = y / s->zoom + s->y1;
-	int i = 0;
-	double tmp;
+	s->c_r = s->x_zoom / 1000;
+	s->c_i = s->y_zoom / 1000;
+	s->z_r = x / s->zoom + s->x1;
+	s->z_i = y / s->zoom + s->y1;
+	s->i = 0;
 	
-	while (z_r * z_r + z_i * z_i < 4 && i < s->iter)
+	while (s->z_r * s->z_r + s->z_i * s->z_i < 4 && s->i < s->iter)
 	{
-		tmp = z_r;
-		z_r = z_r * z_r - z_i * z_i + c_r;
-		z_i = 2 * z_i * tmp + c_i;
-		i++;
+		s->tmp = s->z_r;
+		s->z_r = s->z_r * s->z_r - s->z_i * s->z_i + s->c_r;
+		s->z_i = 2 * s->z_i * s->tmp + s->c_i;
+		s->i++;
 	}
-	if (i == s->iter)
+	if (s->i == s->iter)
 		put_pixel_in_image(x, y, 1, s);
 	else
-		put_pixel_in_image(x, y, i, s);
+		put_pixel_in_image(x, y, s->i, s);
 	return ;
 
 }
@@ -42,10 +41,10 @@ void	julia(t_mem *s)
 	double y;
 	
 	x = 0;
-	while (x < S_WIDTH)
+	while (x < s->img_x)
 	{
 		y = 0;
-		while (y < S_HEIGHT)
+		while (y < s->img_y)
 		{
 			func_julia(x, y, s);
 			y++;
